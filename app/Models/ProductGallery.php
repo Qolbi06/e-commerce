@@ -2,9 +2,8 @@
 
 namespace App\Models;
 
-use App\Models\Product;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class ProductGallery extends Model
 {
@@ -16,8 +15,7 @@ class ProductGallery extends Model
         'is_featured'
     ];
 
-    public function product()
-    {
+    public function product(){
         return $this->belongsTo(Product::class);
     }
 }

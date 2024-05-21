@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class AdminSeeder extends Seeder
 {
@@ -18,7 +18,6 @@ class AdminSeeder extends Seeder
         $user->email = 'admin@gmail.com';
         $user->password = bcrypt('admin');
         $user->role = 'admin';
-
         $user->save();
     }
 }

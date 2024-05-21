@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
@@ -15,10 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::select('id', 'name', 'category_id', 'price')->latest()->get();
-        return view('pages.admin.product.index', compact(
-            'product'
-        ));
+        //
+        $product = Product::all();
+        return view('pages.admin.product.index', compact('product'));
     }
 
     /**
@@ -26,11 +26,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::select('id', 'name')->get();
-
-        return view('pages.admin.product.create', compact(
-            'category'
-        ));
+        //
+        $category = Category::all();
+        return view('pages.admin.product.create', compact('category'));
     }
 
     /**
@@ -38,22 +36,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        //
         $this->validate($request, [
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer',
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
         ]);
 
         try {
             $data = $request->all();
+
             $data['slug'] = Str::slug($request->name);
 
             Product::create($data);
 
-            return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            // dd($product);
+            return redirect()->route('admin.product.index')->with('success', 'Product add successfully');
+
+        } catch (Exception $e) {
+            // dd($e->getMessage());
+            return redirect()->back()->with('error', 'Failed to add Product fill the category');
         }
     }
 
@@ -70,13 +73,11 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Product::findOrFail($id);
-        $category = Category::select('id', 'name')->get();
+        //
+        $product = Product::find($id);
+        $category = Category::all();
 
-        return view('pages.admin.product.edit', compact(
-            'product',
-            'category'
-        ));
+        return view('pages.admin.product.edit', compact('product', 'category'));
     }
 
     /**
@@ -84,23 +85,30 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //
+
         $this->validate($request, [
-            'category_id' => 'required|exists:categories,id',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer',
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required'
         ]);
 
         try {
+            $product = Product::find($id);
+            
             $data = $request->all();
+
             $data['slug'] = Str::slug($request->name);
 
-            $product = Product::findOrFail($id);
             $product->update($data);
 
-            return redirect()->route('admin.product.index')->with('success', 'Product updated successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            // dd($product);
+            return redirect()->route('admin.product.index')->with('success', 'Product add successfully');
+
+        } catch (Exception $e) {
+            // dd($e->getMessage());
+            return redirect()->back()->with('error', 'Failed to add Product');
         }
     }
 
@@ -109,13 +117,16 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
+        //
         try {
-            $product = Product::findOrFail($id);
+            //find category
+            $product = Product::find($id);
+
             $product->delete();
 
-            return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', $e->getMessage());
+            return redirect()->back()->with('success', 'product deleted');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Failed to delete');
         }
     }
 }

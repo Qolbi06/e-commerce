@@ -28,11 +28,10 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected function redirectTo()
-    {
+    protected function redirectTo(){
         if (auth()->user()->role == 'admin') {
             return '/admin/dashboard';
-        } else {
+        } else{
             return '/user/dashboard';
         }
     }

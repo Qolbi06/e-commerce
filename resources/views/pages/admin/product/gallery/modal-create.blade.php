@@ -4,7 +4,6 @@
             <form action="{{ route('admin.product.gallery.store', $product->id) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('POST')
-
                 <div class="modal-header">
                     <h5 class="modal-title">{{ $product->name }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -19,9 +18,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
-
             </form>
-
         </div>
     </div>
 </div>

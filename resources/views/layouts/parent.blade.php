@@ -10,8 +10,8 @@
     <meta content="" name="keywords">
 
     <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="{{ asset('dashboard/assets/img/favicon.png') }}" rel="icon">
+    <link href="{{ asset('dashboard/assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
     <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -33,11 +33,11 @@
 
     <!-- =======================================================
   * Template Name: NiceAdmin
-  * Updated: Jan 29 2024 with Bootstrap v5.3.2
+  * Updated: Jan 09 2024 with Bootstrap v5.3.2
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    ======================================================== -->
 </head>
 
 <body>
@@ -56,25 +56,23 @@
 
     <main id="main" class="main">
 
-        {{-- handle errors --}}
         @if ($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <h4 class="alert-heading">There's something wrong!</h4>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <h4 class="aletr-heading">There's something worng!</h4>
+            </div>
             <hr>
             <p>
-                <ul>
-                    @foreach ($errors->all() as $error )
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
             </p>
-        </div>
         @endif
 
         @yield('content')
 
-    </main>
-    <!-- End #main -->
+    </main><!-- End #main -->
 
     <!-- ======= Footer ======= -->
     @include('layouts.include.footer')
@@ -134,6 +132,7 @@
 
     <!-- Template Main JS File -->
     <script src="{{ asset('dashboard/assets/js/main.js') }}"></script>
+
 
 </body>
 

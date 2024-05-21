@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="{{ route('user.dashboard') }}">
+            <a class="nav-link " href="index.html">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -17,13 +17,12 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="components-alerts.html">
                         <i class="bi bi-circle"></i><span>Transaction</span>
                     </a>
                 </li>
             </ul>
-        </li><!-- End Blank Page Nav -->
-
+        </li><!-- End Components Nav -->
     </ul>
 
 </aside>

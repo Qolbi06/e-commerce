@@ -16,20 +16,21 @@
                 </ol>
             </nav>
 
-            {{-- Button Modal Create Category --}}
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModalCategory">
-                <i class="bi bi-plus"></i>
+            {{-- button modal create category --}}
+            <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#createModalCategory">
                 Add Category
+                <i class="bi bi-plus"></i>
             </button>
+
             @include('pages.admin.category.modal-create')
 
-            <!-- Table with stripped rows -->
+
             <table class="table datatable">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Name</th>
-                        <th>Images</th>
+                        <th>Image</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -39,10 +40,9 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->name }}</td>
                             <td>
-                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="img-thumbnail" width="200">
+                                <img src="{{ url('storage/category/', $row->image) }}" alt="{{ $row->name }}" class="img-thumbnail" width="250">
                             </td>
-                            <td>
-                                <button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">
+                            <td><button class="btn btn-warning" type="button" data-bs-toggle="modal" data-bs-target="#editModalCategory{{ $row->id }}">
                                     <i class="bi bi-pencil"></i>
                                 </button>
                                 @include('pages.admin.category.modal-edit')
@@ -57,12 +57,12 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center">Data is Empty</td>
+                            <td colspan="4" class="text-center"> Data is Empty</td>
                         </tr>
                     @endforelse
                 </tbody>
             </table>
-            <!-- End Table with stripped rows -->
+
         </div>
     </div>
 
@@ -70,29 +70,27 @@
 
 @push('script')
     <script type="text/javascript">
-        ;
-        (function($) {
-            function readURL(input) {
-                var $prev = $('#preview-logo');
+    ;(function($){
+        function readURL(input){
+            var $prev = $('#preview-logo');
 
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
-                    reader.onload = function(e) {
-                        $prev.attr('src', e.target.result);
-                    }
-
-                    reader.readAsDataURL(input.files[0]);
-
-                    $prev.attr('class', '');
-                } else {
-                    $prev.attr('class', 'visually-hidden');
-                }
+            reader.onload = function(e){
+                $prev.attr('src', e.target.result);
             }
 
-            $('#image').on('change', function() {
-                readURL(this);
-            });
-        })(jQuery);
+            reader.readAsDataURL(input.files[0]);
+            $prev.attr('class', '')
+        } else{
+            $prev.attr('class', 'visually-hidden')
+        }
+        }
+
+        $('#image').on('change', function(){
+            readURL(this);
+        });
+    })(jQuery);
     </script>
 @endpush

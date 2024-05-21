@@ -11,20 +11,19 @@
                 <div class="modal-body">
                     <div class="col-12">
                         <label for="categoryName" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="categoryName" name="name"
-                            value="{{ $row->name }}">
+                        <input type="text" class="form-control" id="categoryName" name="name" value="{{ $row->name }}">
                     </div>
                     <div class="col-12">
                         <label for="image" class="form-label">Category Image</label>
                         <input type="file" class="form-control" id="image" name="image">
                     </div>
                     <div class="col-12">
-                        <img id="preview-logo" src="#" width="100" height="100" class="visually-hidden">
+                        <img src="#" alt="category-image" id="preview-logo" class="visually-hidden img-thumbnail">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Edit</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
             </form>
         </div>
