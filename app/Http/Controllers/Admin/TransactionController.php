@@ -17,9 +17,9 @@ class TransactionController extends Controller
             'id', 
             'user_id', 
             'name', 
-            'email', 
-            'email', 
-            'phone', 
+            'slug',
+            'email',
+            'phone',
             'total_price',
             'status', 
             'payment', 
@@ -68,6 +68,17 @@ class TransactionController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $transaction = Transaction::findOrFail($id);
+
+        try {
+            $transaction->update([
+                'status' => $request->status
+            ]);
+            return redirect()->route('admin.transaction.index')->with('success', 'Success To Update');
+        } catch (\Exception $e) {
+            //
+            return redirect()->route('admin.transaction.index')->with('error', 'Faileg To Update');
+        }
     }
 
     /**
@@ -76,5 +87,9 @@ class TransactionController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function showTransactionUserByAdminWithSlugAndId($slug, $id){
+        $transaction = Transaction::where('slug', $slug)->where('id', $id)->first();
     }
 }

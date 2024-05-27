@@ -68,6 +68,15 @@
                             @endif
                         </td>
                         <td>
+                            <a href="#" class="btn btn-info btn-sm mx-2">Show</a>
+                            <!-- Basic Modal -->
+                        <button type="button" class="btn btn-warning btn-sm m-2" data-bs-toggle="modal" data-bs-target="#updateStatus{{ $row->id }}">Edit</button>
+
+                        @include('pages.admin.transaction.modal-edit')
+
+                            <!-- End Basic Modal-->
+                        </td>
+                        <td>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#basicModal{{ $row->id }}">
                                 <i class="bi bi-eye"></i>
                             </button>
